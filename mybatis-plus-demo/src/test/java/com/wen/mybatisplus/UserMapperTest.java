@@ -1,5 +1,6 @@
 package com.wen.mybatisplus;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wen.mybatisplus.mapper.UserMapper;
 import com.wen.mybatisplus.pojo.User;
 import org.junit.Test;
@@ -23,6 +24,15 @@ public class UserMapperTest {
         System.out.println("-------Select All method test------");
         List<User> userList = userMapper.selectList(null);
         for (User user:userList){
+            System.out.println(user);
+        }
+    }
+    @Test
+    public void testSelectLike(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>(new User());
+        queryWrapper.like("name","o");
+        List<User> users = this.userMapper.selectList(queryWrapper);
+        for (User user:users){
             System.out.println(user);
         }
     }
